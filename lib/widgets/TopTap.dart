@@ -44,6 +44,7 @@ class TopTap extends StatelessWidget {
             child: ListView.builder(
               itemCount: singleRoom.length,
               itemBuilder: (ctx, i) => RoomItem(
+                id: singleRoom[i].id,
                 imageUrl: singleRoom[i].imageUrl,
                 rating: singleRoom[i].rating,
                 price: singleRoom[i].price,

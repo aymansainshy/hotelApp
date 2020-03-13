@@ -43,30 +43,6 @@ class _TapScreenState extends State<TapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: SharedDrawer(),
-      // appBar: AppBar(
-      //   // textTheme: Theme.of(context).textTheme,
-      //   // actionsIconTheme: Theme.of(context).accentIconTheme,
-      //   // iconTheme: Theme.of(context).iconTheme,
-      //   // backgroundColor: Color.fromARGB(0, 0, 0, 1),
-      //   // elevation: 0.0,
-      //   title: Text(
-      //     _pages[_selectedPageIndex]['title'],
-      //     //   style: TextStyle(
-      //     //     color: Theme.of(context).primaryColor,
-      //     //   ),
-      //   ),
-      //   actions: <Widget>[
-      //     IconButton(
-      //       icon: Icon(Icons.search),
-      //       onPressed: () {},
-      //     ),
-      //     IconButton(
-      //       icon: Icon(Icons.notifications_none),
-      //       onPressed: () {},
-      //     ),
-      //   ],
-      // ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 28,
@@ -77,7 +53,6 @@ class _TapScreenState extends State<TapScreen> {
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(
-            //icon could be any widget .....
             icon: Icon(
               Icons.home,
             ),

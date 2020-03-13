@@ -94,10 +94,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
-                Divider(
-                  color: Colors.grey,
-                  height: 2,
-                ),
+                Divider(color: Colors.grey, height: 2),
                 TapSelector(),
               ],
             ),
