@@ -27,12 +27,15 @@ class Badge extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: Theme.of(context).accentColor,
             radius: 13,
-            child: Text(
-              '0',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
+            child: Transform.translate(
+              offset: Offset(0, -2),
+              child: Text(
+                '0',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

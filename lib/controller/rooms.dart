@@ -1,7 +1,7 @@
 import 'package:hotelapp/models/room.dart';
 
-class Rooms {
-  List<Room> hotelRooms = [
+
+ final List<Room> hotelRooms = [
     Room(
       id: 'r1',
       imageUrl:
@@ -39,4 +39,4 @@ class Rooms {
       rating: 8.7,
     ),
   ];
-}
+

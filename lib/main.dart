@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'فندق السلام',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        accentColor: Color.fromRGBO(44, 42, 147, 1),
+        accentColor: Color.fromRGBO(98, 73, 255, 1),
         fontFamily: 'Cairo',
       ),
       home: TapScreen(),
