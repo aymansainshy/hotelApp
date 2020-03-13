@@ -100,12 +100,21 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            'Hotel Location',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.grey,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                'Hotel Location',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(width: 5),
+                              Icon(
+                                Icons.room,
+                                color: Theme.of(context).accentColor,
+                              )
+                            ],
                           ),
                           Text(
                             '3 x 4 nights ',
@@ -126,7 +135,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                 Padding(
                   padding: EdgeInsets.only(right: 15, left: 15),
                   child: Text(
-                    'Facllities',
+                    'Feture',
                     style: TextStyle(
                       fontSize: 23.0,
                       fontWeight: FontWeight.bold,
@@ -178,23 +187,23 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Hotel Srroundings',
+                        'Available Bookings',
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      FlatButton(
-                        onPressed: () {},
-                        child: Text(
-                          'See map',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        textColor: Theme.of(context).accentColor,
-                      )
+                      // FlatButton(
+                      //   onPressed: () {},
+                      //   child: Text(
+                      //     'See map',
+                      //     style: TextStyle(
+                      //       fontSize: 16,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      //   textColor: Theme.of(context).accentColor,
+                      // )
                     ],
                   ),
                 ),
