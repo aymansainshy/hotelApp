@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:hotelapp/controller/rooms.dart';
+import 'package:hotelapp/provider/rooms.dart';
 import 'package:hotelapp/models/room.dart';
 import 'package:hotelapp/widgets/room_item.dart';
+import 'package:provider/provider.dart';
 
 class TopTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Room> singleRoom = hotelRooms;
+    List<Room> singleRoom = Provider.of<Rooms>(context).hotelRooms;
 
     return Container(
       height: 430,
@@ -43,11 +44,14 @@ class TopTap extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               itemCount: singleRoom.length,
-              itemBuilder: (ctx, i) => RoomItem(
-                id: singleRoom[i].id,
-                imageUrl: singleRoom[i].imageUrl,
-                rating: singleRoom[i].rating,
-                price: singleRoom[i].price,
+              itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+                value: singleRoom[i],
+                child: RoomItem(
+                  // id: singleRoom[i].id,
+                  // imageUrl: singleRoom[i].imageUrl,
+                  // rating: singleRoom[i].rating,
+                  // price: singleRoom[i].price,
+                ),
               ),
             ),
           ),

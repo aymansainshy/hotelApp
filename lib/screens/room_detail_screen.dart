@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:hotelapp/controller/rooms.dart';
+import 'package:hotelapp/provider/rooms.dart';
 import 'package:hotelapp/widgets/fecllities.dart';
 import 'package:hotelapp/widgets/hotels_near_you.dart';
+import 'package:provider/provider.dart';
 
 class RoomDetailScreen extends StatefulWidget {
   static const routeName = 'Meal-Detail-Screen';
@@ -14,13 +15,13 @@ class RoomDetailScreen extends StatefulWidget {
 class _RoomDetailScreenState extends State<RoomDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final roomId =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final roomId = ModalRoute.of(context).settings.arguments as String;
 
-    var currentRoomId = roomId['roomId'];
-    print(currentRoomId);
+    print(roomId);
 
-    var singleRoom = hotelRooms.firstWhere((room) => room.id == currentRoomId);
+    final loadedRoom = Provider.of<Rooms>(context, listen: false)
+        .hotelRooms
+        .firstWhere((room) => room.id == roomId);
 
     return Scaffold(
       body: CustomScrollView(
@@ -55,18 +56,23 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                   Colors.black54,
                   IconButton(
                     icon: Icon(
-                      Icons.bookmark_border,
+                      loadedRoom.isFavorites
+                          ? Icons.bookmark
+                          : Icons.bookmark_border,
                       size: 30,
                     ),
                     color: Colors.white,
-                    onPressed: () {},
+                    onPressed: () {
+                      loadedRoom.toggleFavorite();
+                      setState(() {});
+                    },
                   ),
                 ),
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                singleRoom.imageUrl,
+                loadedRoom.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -89,7 +95,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                             ),
                           ),
                           Text(
-                            '\$${singleRoom.price}',
+                            '\$${loadedRoom.price}',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -193,17 +199,6 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      // FlatButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     'See map',
-                      //     style: TextStyle(
-                      //       fontSize: 16,
-                      //       fontWeight: FontWeight.bold,
-                      //     ),
-                      //   ),
-                      //   textColor: Theme.of(context).accentColor,
-                      // )
                     ],
                   ),
                 ),
@@ -291,7 +286,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                         ),
                       ),
                       Text(
-                        singleRoom.detail,
+                        loadedRoom.detail,
                         style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.black54,

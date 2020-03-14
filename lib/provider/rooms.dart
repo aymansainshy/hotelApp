@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hotelapp/models/room.dart';
 
-
- final List<Room> hotelRooms = [
+class Rooms with ChangeNotifier {
+  List<Room> _hotelRooms = [
     Room(
       id: 'r1',
       imageUrl:
@@ -12,16 +13,16 @@ import 'package:hotelapp/models/room.dart';
       rating: 8.5,
     ),
     Room(
-      id: 'r1',
+      id: 'r2',
       imageUrl:
           'https://www.ashlinghotel.ie/wp-content/uploads/2019/02/Classic-Rooms-Accommodation-Dublin.jpg',
       detail:
           'When it\'s time to eat, there \'s plenty to choose from at the six restaurants at this resort. For an elegant Italian meal, Sorrento is your place, or if it\'s pizza that\'s calling your name, the pizza buffet at Portside Buffet Restaurant is the place to be. If you want to really catch the Jamaican vibe, nothing beats dining at Sea Breeze, where the Caribbean fusion menu is served beachside, accompanied by soft breezes and murmuring waves. And introducing Kenko, a Japanese Restaurant featuring the Teppanyaki a la carte dining concept. Kenko provides full waiter service and an exquisitely full menu of unique Asian fare.',
       price: 120.0,
-      rating: 7.4,
+      rating: 5.4,
     ),
     Room(
-      id: 'r1',
+      id: 'r3',
       imageUrl:
           'https://specials-images.forbesimg.com/imageserve/5cdb058a5218470008b0b00f/1920x0.jpg',
       detail:
@@ -30,7 +31,7 @@ import 'package:hotelapp/models/room.dart';
       rating: 8.7,
     ),
     Room(
-      id: 'r1',
+      id: 'r4',
       imageUrl:
           'https://www.elitetraveler.com/wp-content/uploads/2013/06/Chicago-Trump.jpg',
       detail:
@@ -40,3 +41,11 @@ import 'package:hotelapp/models/room.dart';
     ),
   ];
 
+  List<Room> get hotelRooms {
+    return [..._hotelRooms];
+  }
+
+  List<Room> get favorites {
+    return _hotelRooms.where((favRoom) => favRoom.isFavorites).toList();
+  }
+}

@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hotelapp/models/room.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/rooms.dart';
 import '../screens/room_detail_screen.dart';
 
-class RoomItem extends StatelessWidget {
-  // final String id;
-  // final String imageUrl;
-  // final double price;
-  // final double rating;
-
-  // const RoomItem({
-  //   Key key,
-  //   @required this.imageUrl,
-  //   @required this.id,
-  //   @required this.rating,
-  //   @required this.price,
-  // }) : super(key: key);
+class FavoritesItem extends StatelessWidget {
+  final String favId;
+  FavoritesItem({
+    Key key,
+    @required this.favId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Room room = Provider.of<Room>(context);
+    final faveRoom = Provider.of<Rooms>(context)
+        .favorites
+        .firstWhere((favRom) => favRom.id == favId);
 
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .pushNamed(RoomDetailScreen.routeName, arguments: room.id);
+            .pushNamed(RoomDetailScreen.routeName, arguments: faveRoom.id);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -44,7 +39,7 @@ class RoomItem extends StatelessWidget {
                       topRight: Radius.circular(15),
                     ),
                     child: Image.network(
-                      room.imageUrl,
+                      faveRoom.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -54,12 +49,12 @@ class RoomItem extends StatelessWidget {
                   right: 10,
                   child: _buildContainer(
                     context,
-                    room.rating > 6
+                    faveRoom.rating > 6
                         ? Colors.lightGreenAccent[700]
                         : Colors.yellow[700],
                     Center(
                       child: Text(
-                        room.rating.toString(),
+                        faveRoom.rating.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -68,25 +63,6 @@ class RoomItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  child: _buildContainer(
-                    context,
-                    Colors.black54,
-                    IconButton(
-                      onPressed: () {
-                        room.toggleFavorite();
-                      },
-                      icon: Icon(
-                        room.isFavorites
-                            ? Icons.bookmark
-                            : Icons.bookmark_border,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
             Padding(
@@ -105,7 +81,7 @@ class RoomItem extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\$${room.price}',
+                        '\$${faveRoom.price}',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
